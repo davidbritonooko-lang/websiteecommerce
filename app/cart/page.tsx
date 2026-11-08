@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function Cart(){return <main className="wrap" style={{padding:"80px 0",textAlign:"center"}}><Link href="/" className="logo">abotik<span>.</span></Link><h1 style={{fontFamily:"Manrope",marginTop:55}}>Your bag is waiting</h1><p className="muted">The shopping bag is a frontend placeholder. Checkout is not connected yet.</p><Link className="btn" href="/#shop">Continue shopping</Link></main>}

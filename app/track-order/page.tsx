@@ -1,0 +1,4 @@
+"use client";
+import Link from "next/link";
+import {useState} from "react";
+export default function TrackOrder(){const [ref,setRef]=useState("");const [sent,setSent]=useState(false);return <main className="wrap" style={{padding:"70px 0",textAlign:"center"}}><Link href="/" className="logo">abotik<span>.</span></Link><h1 style={{fontFamily:"Manrope",marginTop:55}}>Track your order</h1><p className="muted">Order lookup will be connected when the backend is implemented.</p><form onSubmit={e=>{e.preventDefault();setSent(true)}} style={{display:"flex",gap:8,maxWidth:420,margin:"25px auto"}}><input required value={ref} onChange={e=>{setRef(e.target.value);setSent(false)}} placeholder="Order reference" style={{padding:13,border:"1px solid #ddd",minWidth:0,flex:1}}/><button className="btn" style={{margin:0}}>Track</button></form>{sent&&<p className="muted" role="status">Tracking is not active in this demo yet.</p>}</main>}

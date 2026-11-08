@@ -1,0 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
+import {notFound} from "next/navigation";
+import {ArrowLeft} from "lucide-react";
+import {money,products} from "@/lib/products";
+export function generateStaticParams(){return products.map(p=>({slug:p.slug}));}
+export default async function ProductPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=products.find(item=>item.slug===slug);if(!p)notFound();return <main><header><div className="wrap head"><Link href="/" className="logo">abotik<span>.</span></Link><Link href="/#shop"><ArrowLeft size={15} style={{verticalAlign:"middle"}}/> Back to shop</Link></div></header><div className="wrap" style={{padding:"40px 0"}}><p className="muted"><Link href="/">Home</Link> / {p.category} / {p.name}</p><div className="hero-grid" style={{alignItems:"start",marginTop:25}}><Image src={p.image} alt={p.name} width={800} height={800} style={{width:"100%",height:"auto",objectFit:"cover"}}/><div><div className="eyebrow">{p.category}</div><h1 style={{fontFamily:"Manrope",fontSize:36}}>{p.name}</h1><p className="muted">★ {p.rating} · Demo rating</p><h2>{money(p.price)}</h2><p style={{lineHeight:1.8,color:"#68756d"}}>{p.description}</p><p className="muted">{p.stock>0? p.stock+" available (demo stock)":"Currently out of stock (demo data)"}</p><Link className="btn" href="/cart">Continue to bag</Link><p className="muted">Checkout and order processing are not connected in this frontend prototype.</p></div></div></div></main>}
